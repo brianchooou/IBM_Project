@@ -1,108 +1,132 @@
 # Task Management API
 
-這是一個使用Node.js、Express和MongoDB構建的RESTful API服務，用於管理任務。該服務使用Podman進行容器化部署。
+A RESTful API service built with Node.js, Express, and MongoDB for managing tasks. This service is containerized using Podman/Docker.
 
-## 功能特點
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- RESTful API endpoints支援任務的CRUD操作
-- Swagger/OpenAPI文檔
-- 容器化部署（Podman/Docker）
-- 日誌記錄（Winston）
-- 環境變數配置
+## 🚀 Features
 
-## 技術棧
+- RESTful API endpoints for CRUD operations
+- Swagger/OpenAPI documentation
+- Containerized deployment (Podman/Docker)
+- Logging system (Winston)
+- Environment-based configuration
+- MongoDB database integration
 
-- Node.js
-- Express.js
-- MongoDB
-- Swagger/OpenAPI
-- Winston (日誌記錄)
+## 📋 Prerequisites
+
+- Node.js (v14 or higher)
 - Podman/Docker
+- Podman Compose/Docker Compose
+- MongoDB (containerized or local instance)
 
-## API端點
+## 🛠 Tech Stack
 
-- GET /api/tasks - 獲取所有任務
-- GET /api/tasks/:id - 獲取特定任務
-- POST /api/tasks - 創建新任務
-- PUT /api/tasks/:id - 更新任務
-- DELETE /api/tasks/:id - 刪除任務
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Documentation**: Swagger/OpenAPI
+- **Logging**: Winston
+- **Containerization**: Podman/Docker
+- **API Testing**: Postman, Jest
 
-## 部署指南
+## 🔧 Installation & Setup
 
-### 前置條件
-
-- 安裝Podman
-- 安裝Podman Compose
-
-### 使用Podman Compose部署
-
-1. 克隆倉庫：
+1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/brianchooou/IBM_Project.git
    cd api-demo
    ```
 
-2. 創建並啟動容器：
+2. **Environment Setup**
    ```bash
-   podman-compose up -d
+   # Copy example environment file
+   cp .env.example .env
+   
+   # Edit .env file with your configurations
+   # Required variables:
+   # - PORT=3000
+   # - MONGODB_URI=mongodb://admin:password@mongodb:27017/taskdb?authSource=admin
+   # - NODE_ENV=development
    ```
 
-3. 驗證服務運行狀態：
+3. **Using Podman/Docker Compose**
    ```bash
+   # Start the services
+   podman-compose up -d
+   
+   # Check service status
    podman-compose ps
    ```
 
-### 環境變數
+## 📚 API Documentation
 
-- PORT: API服務端口（默認：3000）
-- MONGODB_URI: MongoDB連接字符串
-- NODE_ENV: 運行環境（development/production）
-
-## API文檔
-
-API文檔可在服務運行後通過以下地址訪問：
+Once the service is running, access the Swagger documentation at:
+```
 http://localhost:3000/api-docs
-
-## 監控和可觀察性
-
-服務包含以下監控功能：
-
-- 請求日誌記錄
-- 錯誤日誌記錄
-- HTTP請求追踪
-
-日誌文件位於 `logs` 目錄：
-- error.log: 錯誤日誌
-- combined.log: 所有日誌
-
-## 測試API
-
-可以使用Postman或curl測試API：
-
-```bash
-# 獲取所有任務
-curl http://localhost:3000/api/tasks
-
-# 創建新任務
-curl -X POST http://localhost:3000/api/tasks \
-  -H "Content-Type: application/json" \
-  -d '{"title":"測試任務","description":"這是一個測試任務"}'
 ```
 
-## 故障排除
+### API Endpoints
 
-1. 如果無法連接到MongoDB：
-   - 確認MongoDB容器是否運行
-   - 檢查網絡配置
-   - 驗證連接字符串
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /api/tasks | Get all tasks |
+| GET | /api/tasks/:id | Get a specific task |
+| POST | /api/tasks | Create a new task |
+| PUT | /api/tasks/:id | Update a task |
+| DELETE | /api/tasks/:id | Delete a task |
 
-2. 如果API服務無響應：
-   - 檢查服務日誌
-   - 確認端口映射
-   - 驗證服務狀態
+## 🔍 Monitoring & Observability
 
-## 維護
+- **Logging**
+  - Error logs: `logs/error.log`
+  - Combined logs: `logs/combined.log`
+  - Console output in development mode
 
-- 定期檢查日誌文件
-- 監控數據庫大小
-- 更新依賴包 
+## 🧪 Testing
+
+```bash
+# Run tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+## 🔒 Security
+
+- CORS protection enabled
+- Environment variable management
+- Container network isolation
+- Error handling middleware
+
+## 🚀 Deployment
+
+### Production Deployment Steps
+
+1. Set environment variables for production
+2. Build and push Docker images
+3. Deploy using container orchestration
+4. Monitor logs and performance
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Authors
+
+- **Brian Chou** - *Initial work*
+
+## 🙏 Acknowledgments
+
+- Node.js community
+- Express.js framework
+- MongoDB team
+- Docker/Podman community 
